@@ -1,7 +1,6 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
-using System.Data;
 
 namespace ProgrammingPattern
 {
@@ -10,17 +9,24 @@ namespace ProgrammingPattern
         public GameEngine(uint sizeX, uint sizeY, string title)
         {
             mWindow = new RenderWindow(new VideoMode(sizeX, sizeY), title);
+            mTargetFramerate = 60;
         }
         
         public void Run()
         {
             Clock runClock = new Clock();
             runClock.Restart();
+            float accumlatedTime = 0;
+            float targetDeltaTime = 1f / mTargetFramerate;
             while(mWindow.IsOpen)
             {
                 mWindow.DispatchEvents(); //dispath events like close window event, mouse click, keypress
-                
-                Update(runClock.Restart().AsSeconds());
+                accumlatedTime += runClock.Restart().AsSeconds(); // keep increment acumulatedTime with the time elapes each loop
+                while(accumlatedTime > targetDeltaTime) //if we accumulated enough time for an update, we update.
+                {
+                    Update(targetDeltaTime); 
+                    accumlatedTime -= targetDeltaTime;
+                }
             }
         }
 
@@ -30,5 +36,6 @@ namespace ProgrammingPattern
         }
 
         private RenderWindow mWindow;
+        private int mTargetFramerate;
     }
 }
