@@ -1,4 +1,4 @@
 ﻿using ProgrammingPattern;
 
-GameEngine ge = new GameEngine(600, 600, "snakeGame");
+SnakeGame ge = new SnakeGame();
 ge.Run();

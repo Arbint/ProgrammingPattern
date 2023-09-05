@@ -11,6 +11,8 @@ namespace ProgrammingPattern
             mWindow = new RenderWindow(new VideoMode(sizeX, sizeY), title);
             mTargetFramerate = 60;
         }
+
+        public RenderWindow Window { get { return mWindow; } } //missing the set part means you cannot set it.
         
         public void Run()
         {
@@ -27,7 +29,21 @@ namespace ProgrammingPattern
                     Update(targetDeltaTime); 
                     accumlatedTime -= targetDeltaTime;
                 }
+
+                NativeRender();
             }
+        }
+
+        private void NativeRender()
+        {
+            Window.Clear();
+            Render();
+            Window.Display();
+        }
+
+        protected virtual void Render()
+        {
+            
         }
 
         private void Update(float deltaSecond)
