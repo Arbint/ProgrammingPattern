@@ -11,6 +11,10 @@ namespace ProgrammingPattern
             mWindow = new RenderWindow(new VideoMode(sizeX, sizeY), title);
             mTargetFramerate = 60;
         }
+        public void SwitchToState(GameState nextState)
+        {
+            mNextState = nextState;
+        }
 
         public RenderWindow Window { get { return mWindow; } } //missing the set part means you cannot set it.
         
@@ -48,10 +52,24 @@ namespace ProgrammingPattern
 
         private void Update(float deltaSecond)
         {
+            if(mNextState != null) //swith to the new state if mNextState exist.
+            {
+                mCurrentState = mNextState;
+                mNextState = null;
+            }
+
+            if(mCurrentState != null)
+            {
+                mCurrentState.Update(deltaSecond); 
+            }
+
             Console.WriteLine($"runing at framerate: {1f/deltaSecond}");
         }
 
         private RenderWindow mWindow;
         private int mTargetFramerate;
+
+        private GameState? mCurrentState; //? means this variable couble be null
+        private GameState? mNextState; 
     }
 }
