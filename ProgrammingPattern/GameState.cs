@@ -1,4 +1,5 @@
 ﻿using SFML.Graphics;
+using SFML.Window;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,8 @@ namespace ProgrammingPattern
         protected GameState() { } // only child class can call this coustructor.
         public abstract void Update(float deltaTime);
         public abstract void Render(RenderWindow window);
+
+        //defaults to not handle the mouse event.
+        public virtual bool HandleMouseButtonEvent(MouseButtonEventArgs buttonEvent) { return false; }
     }
 }

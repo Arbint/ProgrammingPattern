@@ -9,8 +9,25 @@ namespace ProgrammingPattern
         public GameEngine(uint sizeX, uint sizeY, string title)
         {
             mWindow = new RenderWindow(new VideoMode(sizeX, sizeY), title);
+            mWindow.MouseButtonPressed += MouseBtnClicked;
             mTargetFramerate = 60;
         }
+
+        private void MouseBtnClicked(object? sender, MouseButtonEventArgs e)
+        {
+            if (mCurrentState != null && mCurrentState.HandleMouseButtonEvent(e))
+            {
+                return;
+            }
+
+            NativehandleMouseEvent(e);
+        }
+
+        private void NativehandleMouseEvent(MouseButtonEventArgs mouseEvent)
+        {
+            
+        }
+
         public void SwitchToState(GameState nextState)
         {
             mNextState = nextState;
@@ -69,7 +86,7 @@ namespace ProgrammingPattern
                 mCurrentState.Update(deltaSecond); 
             }
 
-            Console.WriteLine($"runing at framerate: {1f/deltaSecond}");
+            //Console.WriteLine($"runing at framerate: {1f/deltaSecond}");
         }
 
         private RenderWindow mWindow;

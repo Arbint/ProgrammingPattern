@@ -10,12 +10,19 @@ namespace ProgrammingPattern
     {
         public SnakeGame() : base(600, 600, "snakeGame") //tell how to construct the base class part of the class.
         {
-            SwitchToState(new MainMenuState());
+            var mainMenuState = new MainMenuState();
+            mainMenuState.onStartButtonClicked += StartGame;
+            SwitchToState(mainMenuState);
         }
 
         protected override void Render()
         {
 
+        }
+
+        internal void StartGame()
+        {
+            Console.WriteLine("start game");
         }
     }
 }
