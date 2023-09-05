@@ -10,7 +10,7 @@ namespace ProgrammingPattern
     {
         public SnakeGame() : base(600, 600, "snakeGame") //tell how to construct the base class part of the class.
         {
-            
+            SwitchToState(new MainMenuState());
         }
 
         protected override void Render()

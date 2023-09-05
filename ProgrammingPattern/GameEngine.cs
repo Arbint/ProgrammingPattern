@@ -41,6 +41,12 @@ namespace ProgrammingPattern
         private void NativeRender()
         {
             Window.Clear();
+
+            if(mCurrentState!=null)
+            {
+                mCurrentState.Render(Window);
+            }
+
             Render();
             Window.Display();
         }

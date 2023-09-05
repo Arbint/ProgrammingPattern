@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SFML.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,6 @@ namespace ProgrammingPattern
     {
         protected GameState() { } // only child class can call this coustructor.
         public abstract void Update(float deltaTime);
-        public abstract void Render();
+        public abstract void Render(RenderWindow window);
     }
 }
