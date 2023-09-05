@@ -9,7 +9,7 @@ namespace ProgrammingPattern
         //use delegate to singnal back.
         public delegate void OnStartButtonClicked();
         public event OnStartButtonClicked onStartButtonClicked;
-
+        
         public MainMenuState()
         {
             mFont = new Font("BAUHS93.TTF");

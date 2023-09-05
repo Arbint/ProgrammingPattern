@@ -22,7 +22,10 @@ namespace ProgrammingPattern
 
         internal void StartGame()
         {
-            Console.WriteLine("start game");
+            float gridUnitSize = 30f;
+
+            var gameplayState = new GameplayState((int)(600/gridUnitSize), (int)(600/gridUnitSize), gridUnitSize);
+            SwitchToState(gameplayState);
         }
     }
 }
